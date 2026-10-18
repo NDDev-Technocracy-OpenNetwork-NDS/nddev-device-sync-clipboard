@@ -22,3 +22,7 @@ browser's permission; it never reads or archives the system clipboard implicitly
 Browser copy cannot exclude OS history or revoke a write already handed to the
 browser. A single pending request owns a 15-second response deadline; cancellation
 before supplying text rejects the item. Native clipboard policy stays native.
+
+Author browser I/O in `src/browser_clipboard.ts`; the pinned TypeScript compiler
+emits `browser_clipboard.js` for the Rust WASM import. `just browser-check` runs
+strict typing, Biome and generation drift checks using the frozen Bun lockfile.
