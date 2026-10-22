@@ -254,14 +254,14 @@ mod tests {
             Clipboard::new(io.clone(), PathBuf::from("relative.sock")),
             Err(Error::Io(IoError::InvalidConfiguration))
         ));
-        assert!(Clipboard::new(io, PathBuf::from("/run/user/1000/rldyour-clipboard.sock")).is_ok());
+        assert!(Clipboard::new(io, std::env::temp_dir().join("rldyour-clipboard.sock")).is_ok());
     }
 
     #[tokio::test]
     async fn list_and_fetch_reject_invalid_arguments_before_io() {
         let io = NativeIo::new(1).unwrap().local_handle();
         let clipboard =
-            Clipboard::new(io, PathBuf::from("/run/user/1000/rldyour-clipboard.sock")).unwrap();
+            Clipboard::new(io, std::env::temp_dir().join("rldyour-clipboard.sock")).unwrap();
         for before in [Some(0), Some(i64::MAX as u64 + 1)] {
             assert!(matches!(
                 clipboard.list(before, CancellationToken::new()).await,
