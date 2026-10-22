@@ -26,3 +26,5 @@ before supplying text rejects the item. Native clipboard policy stays native.
 Author browser I/O in `src/browser_clipboard.ts`; the pinned TypeScript compiler
 emits `browser_clipboard.js` for the Rust WASM import. `just browser-check` runs
 strict typing, Biome and generation drift checks using the frozen Bun lockfile.
+
+Release journals live in [GitHub Releases](https://github.com/NDDev-Technocracy-OpenNetwork-NDS/nddev-device-sync-clipboard/releases).
