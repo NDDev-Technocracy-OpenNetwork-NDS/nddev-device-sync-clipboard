@@ -12,3 +12,7 @@ browser-check:
     bun install --frozen-lockfile --ignore-scripts
     bun run check
     bun run check:generated
+
+wasm-check:
+    rustup target add --toolchain 1.99.1 wasm32-unknown-unknown
+    cargo clippy --locked --lib --target wasm32-unknown-unknown -- -D warnings
