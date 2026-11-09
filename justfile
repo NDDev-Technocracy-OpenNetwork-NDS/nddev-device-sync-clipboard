@@ -1,5 +1,9 @@
 set shell := ["bash", "-euo", "pipefail", "-c"]
 
+# List the project commands.
+default:
+    @just --list
+
 setup:
     cargo fetch --locked
     bun install --frozen-lockfile --ignore-scripts
@@ -25,10 +29,6 @@ browser-check:
 wasm-check:
     rustup target add --toolchain 1.99.1 wasm32-unknown-unknown
     cargo clippy --locked --lib --target wasm32-unknown-unknown -- -D warnings
-
-# List the project commands.
-default:
-    @just --list
 
 # Compile the locked release workspace.
 build:
