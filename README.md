@@ -9,8 +9,11 @@ Browse native archive pages and fetch one explicitly selected representation, ca
 capability handles share a bounded agent admission budget. Native responses,
 private paths and content are never Debug or telemetry payloads.
 
-Run `just check`, then `just provider-check` with the explicit `NDS_TEST_*`
-provider paths used by CI. Acceptance exercises the real pinned native owner
+`just setup` fetches the locked source dependencies without package hooks. `just check`
+performs formatting, typing, lint and dependency policy/use checks without compiling or
+starting the native provider. On an execution host or runner, `just test` retains native
+tests and generated-JavaScript equivalence; then run `just provider-check` with the explicit
+`NDS_TEST_*` provider paths used by CI. Acceptance exercises the real pinned native owner
 in isolated temporary state. Linux provider acceptance and portable source
 checks are distinct; an absent provider is unavailable, not a successful stub.
 There is no backup/recovery implementation or private estate configuration.
@@ -24,7 +27,7 @@ browser. A single pending request owns a 15-second response deadline; cancellati
 before supplying text rejects the item. Native clipboard policy stays native.
 
 Author browser I/O in `src/browser_clipboard.ts`; the pinned TypeScript compiler
-emits `browser_clipboard.js` for the Rust WASM import. `just browser-check` runs
-strict typing, Biome and generation drift checks using the frozen Bun lockfile.
+emits `browser_clipboard.js` for the Rust WASM import. `just browser-check` runs strict typing
+and Biome without emitting code. Generation drift remains an execution-host/CI gate.
 
 Release journals live in [GitHub Releases](https://github.com/NDDev-Technocracy-OpenNetwork-NDS/nddev-device-sync-clipboard/releases).

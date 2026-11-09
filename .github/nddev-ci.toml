@@ -20,8 +20,13 @@ command = ["cargo", "audit", "--deny", "warnings"]
 timeout = 600
 
 [extras.browser-check]
-purpose = "TypeScript browser adapter checks and generated-source drift gate"
+purpose = "TypeScript browser adapter typing and lint without emitting code"
 command = ["just", "browser-check"]
+timeout = 300
+
+[extras.browser-generated]
+purpose = "Retain generated JavaScript equivalence on the execution host"
+command = ["bun", "run", "check:generated"]
 timeout = 300
 
 [extras.wasm-gate]
