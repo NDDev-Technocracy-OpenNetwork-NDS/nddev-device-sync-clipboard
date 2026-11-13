@@ -24,3 +24,24 @@ browser-check:
 wasm-check:
     rustup target add --toolchain 1.99.1 wasm32-unknown-unknown
     cargo clippy --locked --lib --target wasm32-unknown-unknown -- -D warnings
+
+# The checks the former CI library ran from .github/nddev-ci.toml; CI calls them through
+# `just test` on a pull request and `just verify` on dev.
+ci-extras:
+    cargo audit --deny warnings
+    just browser-check
+    bun run check:generated
+    just wasm-check
+
+ci-policy:
+    cargo deny --locked check licenses sources
+
+ci-build:
+    cargo build --locked --workspace --release
+
+verify:
+    just check
+    just test
+    just ci-policy
+    just ci-extras
+    just ci-build
