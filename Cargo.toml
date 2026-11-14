@@ -16,7 +16,7 @@ thiserror = "2"
 
 [target.'cfg(any(target_os = "linux", target_os = "macos", target_os = "windows"))'.dependencies]
 nddev-device-sync-adapter-io = { version = "=0.0.1-alpha.4", git = "https://github.com/NDDev-Technocracy-OpenNetwork-NDS/nddev-device-sync-agent", rev = "383b6a06b8500626cc12307ac4e2ae92f7d43c80" }
-arboard = { version = "=3.6.1", default-features = false, features = ["wayland-data-control"] }
+arboard = { version = "=3.7.0", default-features = false, features = ["wayland-data-control"] }
 serde_json = "1"
 
 [target.'cfg(not(target_arch = "wasm32"))'.dev-dependencies]
@@ -29,7 +29,7 @@ unsafe_code = "forbid"
 
 [target.'cfg(target_os = "android")'.dependencies]
 nddev-device-sync-accounts = { version="=0.0.1-alpha.24", git="https://github.com/NDDev-Technocracy-OpenNetwork-NDS/nddev-device-sync-accounts", rev="1e65cfb2e03459f3ae4cab92f6a036dd53e2f77c" }
-jni = "0.21.1"
+jni = "0.22.0"
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]
 wasm-bindgen = "=0.2.130"
