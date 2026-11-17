@@ -12,7 +12,8 @@ private paths and content are never Debug or telemetry payloads.
 `just setup` fetches the locked source dependencies without package hooks. `just check`
 performs formatting, typing, lint and dependency policy/use checks without compiling or
 starting the native provider. On an execution host or runner, `just test` retains native
-tests and generated-JavaScript equivalence; then run `just provider-check` with the explicit
+tests, generated-JavaScript equivalence and wasm-Clippy with the declared SDK target;
+then run `just provider-check` with the explicit
 `NDS_TEST_*` provider paths used by CI. Acceptance exercises the real pinned native owner
 in isolated temporary state. Linux provider acceptance and portable source
 checks are distinct; an absent provider is unavailable, not a successful stub.
